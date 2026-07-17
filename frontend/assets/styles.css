@@ -1,0 +1,428 @@
+/* ============================================================
+   AI Career Copilot — Design System
+   Dark, glassmorphic, aurora-lit. Inspired by ChatGPT / Linear /
+   Vercel / Notion AI.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
+
+:root {
+    --primary: #7C3AED;
+    --accent: #A855F7;
+    --secondary: #06B6D4;
+    --bg: #0F172A;
+    --card: rgba(255, 255, 255, 0.08);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --success: #22C55E;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --text: #F8FAFC;
+    --muted: #94A3B8;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+}
+
+/* ---------- App shell ---------- */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+}
+
+.stApp {
+    background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124, 58, 237, 0.35), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(6, 182, 212, 0.22), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(168, 85, 247, 0.15), transparent 60%),
+        var(--bg);
+    background-attachment: fixed;
+}
+
+/* Hide Streamlit chrome we don't want */
+#MainMenu, footer, header[data-testid="stHeader"] {
+    background: transparent;
+}
+[data-testid="stSidebarNav"] { display: none; }
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1180px;
+}
+[data-testid="stDecoration"] { display: none; }
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+    font-family: 'Sora', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+}
+p, li, span, div { color: var(--text); }
+.muted { color: var(--muted) !important; }
+
+/* ---------- Sidebar ---------- */
+section[data-testid="stSidebar"] {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--card-border);
+}
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.5rem;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 4px 18px 4px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--card-border);
+}
+.sidebar-brand .logo-dot {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 0 20px rgba(124,58,237,0.55);
+}
+.sidebar-brand .brand-text { font-weight: 800; font-size: 16px; font-family: 'Sora', sans-serif; }
+.sidebar-brand .brand-sub { font-size: 11px; color: var(--muted); margin-top: -2px; }
+
+section[data-testid="stSidebar"] .stButton > button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted);
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.9rem;
+    margin-bottom: 2px;
+    transition: all 0.18s ease;
+}
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background: rgba(124, 58, 237, 0.14);
+    color: var(--text);
+    border-color: rgba(124, 58, 237, 0.35);
+    transform: translateX(2px);
+}
+section[data-testid="stSidebar"] .stButton > button:focus {
+    box-shadow: none !important;
+}
+.nav-active > button {
+    background: linear-gradient(90deg, rgba(124,58,237,0.35), rgba(168,85,247,0.12)) !important;
+    color: var(--text) !important;
+    border-color: rgba(168, 85, 247, 0.5) !important;
+    font-weight: 600 !important;
+}
+
+/* ---------- Buttons (primary content area) ---------- */
+.stButton > button, .stDownloadButton > button {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    padding: 0.55rem 1.3rem;
+    box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.stButton > button:hover, .stDownloadButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+    color: white;
+}
+.stButton > button:active { transform: translateY(0px); }
+
+/* ---------- Inputs ---------- */
+.stTextInput input, .stTextArea textarea, .stSelectbox div[data-baseweb="select"] > div {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--text) !important;
+}
+.stTextInput input:focus, .stTextArea textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px rgba(168,85,247,0.25) !important;
+}
+
+/* ---------- Glass card (base building block) ---------- */
+.glass-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    animation: fadeIn 0.5s ease both;
+}
+
+/* ---------- Hero ---------- */
+.hero-wrap { text-align: center; padding: 48px 10px 20px 10px; animation: fadeIn 0.6s ease both; }
+.hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(168,85,247,0.4);
+    padding: 6px 16px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; color: #D8B4FE;
+    margin-bottom: 22px;
+}
+.hero-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 52px; font-weight: 800; line-height: 1.12;
+    background: linear-gradient(135deg, #F8FAFC 20%, #C4B5FD 60%, #67E8F9 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 18px;
+}
+.hero-subtitle {
+    font-size: 17px; color: var(--muted); max-width: 640px;
+    margin: 0 auto 6px auto; line-height: 1.7;
+}
+.hero-pill-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.hero-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--card-border);
+    padding: 7px 14px; border-radius: 999px; font-size: 13px; color: var(--text);
+}
+
+/* ---------- Feature cards ---------- */
+.feature-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    height: 100%;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    animation: fadeIn 0.6s ease both;
+}
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(168, 85, 247, 0.55);
+    box-shadow: 0 14px 34px rgba(124, 58, 237, 0.28);
+}
+.feature-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.35), rgba(6,182,212,0.25));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 14px;
+}
+.feature-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; font-family: 'Sora', sans-serif; }
+.feature-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+/* ---------- Upload area ---------- */
+[data-testid="stFileUploaderDropzone"] {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1.5px dashed rgba(168,85,247,0.45) !important;
+    border-radius: var(--radius-lg) !important;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: var(--accent) !important;
+    background: rgba(124,58,237,0.08) !important;
+}
+
+.upload-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    padding: 10px 16px; border-radius: var(--radius-sm);
+    color: #86EFAC; font-weight: 600; font-size: 14px;
+    animation: fadeIn 0.4s ease both;
+}
+
+/* ---------- Badges / chips ---------- */
+.chip {
+    display: inline-block;
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin: 3px 5px 3px 0;
+}
+.chip-match { background: rgba(34,197,94,0.15); color: #86EFAC; border: 1px solid rgba(34,197,94,0.4); }
+.chip-missing { background: rgba(239,68,68,0.15); color: #FCA5A5; border: 1px solid rgba(239,68,68,0.4); }
+.chip-neutral { background: rgba(148,163,184,0.15); color: #CBD5E1; border: 1px solid rgba(148,163,184,0.35); }
+.chip-keyword { background: rgba(6,182,212,0.15); color: #67E8F9; border: 1px solid rgba(6,182,212,0.4); }
+
+/* ---------- Section header ---------- */
+.section-header {
+    display: flex; align-items: center; gap: 10px;
+    margin: 6px 0 14px 0;
+}
+.section-header .icon { font-size: 20px; }
+.section-header h3 { margin: 0; font-size: 19px; }
+
+.divider-soft {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+    margin: 22px 0;
+    border: none;
+}
+
+/* ---------- Score ring ---------- */
+.score-ring-wrap { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.score-ring {
+    position: relative;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.score-ring .score-num { font-size: 30px; font-weight: 800; font-family: 'Sora', sans-serif; }
+.score-ring .score-den { font-size: 12px; color: var(--muted); }
+.score-ring-inner {
+    position: absolute; inset: 10px;
+    border-radius: 50%;
+    background: #0F172A;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+/* ---------- Timeline (roadmap) ---------- */
+.timeline { position: relative; padding-left: 26px; margin-top: 10px; }
+.timeline::before {
+    content: "";
+    position: absolute; left: 8px; top: 4px; bottom: 4px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    opacity: 0.5;
+}
+.timeline-item { position: relative; margin-bottom: 18px; animation: fadeIn 0.4s ease both; }
+.timeline-dot {
+    position: absolute; left: -26px; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 0 0 4px rgba(124,58,237,0.18);
+}
+.timeline-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+}
+.timeline-card h4 { margin: 0 0 8px 0; font-size: 15.5px; color: #D8B4FE; }
+
+/* ---------- Chat ---------- */
+.chat-row { display: flex; margin-bottom: 14px; animation: fadeIn 0.3s ease both; }
+.chat-row.user { justify-content: flex-end; }
+.chat-row.ai { justify-content: flex-start; }
+.chat-bubble {
+    max-width: 74%;
+    padding: 13px 17px;
+    border-radius: 16px;
+    line-height: 1.6;
+    font-size: 14.5px;
+}
+.chat-bubble.user {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+.chat-bubble.ai {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+}
+.chat-avatar {
+    width: 30px; height: 30px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+}
+.typing-dots span {
+    display: inline-block; width: 6px; height: 6px; margin-right: 3px;
+    background: var(--muted); border-radius: 50%;
+    animation: blink 1.2s infinite ease-in-out;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ---------- Loading card ---------- */
+.loading-card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    animation: fadeIn 0.3s ease both;
+}
+.loading-spinner {
+    width: 20px; height: 20px;
+    border: 2.5px solid rgba(168,85,247,0.25);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+.loading-text { font-size: 14px; color: var(--muted); }
+.loading-text.done { color: var(--success); }
+.loading-check { color: var(--success); font-size: 16px; }
+
+/* ---------- Alerts ---------- */
+.alert-card {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 15px 18px; border-radius: var(--radius-md);
+    margin: 10px 0; animation: fadeIn 0.3s ease both;
+}
+.alert-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.35); }
+.alert-success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.35); }
+.alert-info { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.35); }
+.alert-title { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+.alert-msg { font-size: 13.5px; color: var(--muted); }
+
+/* ---------- Document viewer (cover letter) ---------- */
+.doc-viewer {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 40px 46px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.85;
+    font-size: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.doc-viewer p { margin-bottom: 14px; }
+
+/* ---------- Accordion header custom ---------- */
+.stExpander {
+    background: var(--card) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 10px;
+}
+.stExpander summary {
+    font-weight: 600 !important;
+}
+
+/* ---------- Footer ---------- */
+.app-footer {
+    text-align: center;
+    padding: 30px 0 8px 0;
+    color: var(--muted);
+    font-size: 12.5px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+}
+.app-footer .brand { color: #C4B5FD; font-weight: 600; }
+
+/* ---------- Status dot ---------- */
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.status-online { background: var(--success); box-shadow: 0 0 8px var(--success); }
+.status-offline { background: var(--danger); box-shadow: 0 0 8px var(--danger); }
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes blink {
+    0%, 80%, 100% { opacity: 0.25; }
+    40% { opacity: 1; }
+}
+
+/* ---------- Misc ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.4); border-radius: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+hr { border-color: var(--card-border); }

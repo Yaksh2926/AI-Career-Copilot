@@ -1,0 +1,36 @@
+# Task List - AI Career Copilot Frontend
+
+- [x] Create folder structure and setup assets
+  - [x] Create `frontend/assets` directory
+  - [x] Create `frontend/components` directory
+  - [x] Create `frontend/pages` directory
+  - [x] Create `frontend/utils` directory
+- [x] Create configuration and utility files
+  - [x] Implement `frontend/config.py`
+  - [x] Implement `frontend/theme.py`
+  - [x] Implement `frontend/utils/parsers.py` (markdown parsing)
+  - [x] Implement `frontend/utils/file_helpers.py` (download builders)
+- [x] Implement global styles
+  - [x] Create `frontend/assets/styles.css`
+- [x] Implement backend API client layer
+  - [x] Create `frontend/api.py` (connection checking, API calls, and auto-starting FastAPI server)
+- [x] Implement custom layout components
+  - [x] Create `frontend/components/sidebar.py` (glass sidebar)
+  - [x] Create `frontend/components/topbar.py` (standard search/notifications/profile)
+  - [x] Create `frontend/components/upload_card.py` (drag-and-drop file uploader wrapper)
+  - [x] Create custom design elements: circular progress, timelines, accordions, document preview
+- [x] Build sub-pages
+  - [x] Dashboard Page (`frontend/pages/dashboard.py`)
+  - [x] Resume Analysis Page (`frontend/pages/resume_analysis.py`)
+  - [x] ATS Score Page (`frontend/pages/ats_score.py`)
+  - [x] Career Roadmap Page (`frontend/pages/career_roadmap.py`)
+  - [x] Interview Preparation Page (`frontend/pages/interview_prep.py`)
+  - [x] Cover Letter Page (`frontend/pages/cover_letter.py`)
+  - [x] LinkedIn Optimizer Page (`frontend/pages/linkedin_optimizer.py`)
+  - [x] Career Chat Page (`frontend/pages/career_chat.py`)
+  - [x] Resources & Saved Reports Pages (`frontend/pages/resources.py`, `frontend/pages/saved_reports.py`)
+- [x] Build main routing hub
+  - [x] Create `frontend/app.py`
+- [x] Verification and Polish
+  - [x] Run syntax checks
+  - [x] Run application manually and verify functionality
