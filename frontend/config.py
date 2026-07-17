@@ -14,7 +14,7 @@ import os
 # The FastAPI backend is NOT modified. We only point at wherever it's running.
 # Override with an environment variable if the backend runs on another host/port,
 # e.g. `export BACKEND_URL=http://127.0.0.1:8000`
-BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000").rstrip("/")
+BACKEND_URL = os.getenv("BACKEND_URL", "https://ai-career-copilot-yhq8.onrender.com").rstrip("/")
 REQUEST_TIMEOUT = 180  # seconds — Gemini generations can take a while
 
 # ---------------------------------------------------------------------------
